@@ -1,0 +1,101 @@
+name,email,phone,gpa,grade_class,ielts,toefl,pte,duolingo,funding_type,budget,intake_year,target_country,target_course,stage,source
+Idris Sani,idris.sani0@example.com,+2348013356886,2.9,2:2,,,,,Scholarship,42000,2027/2028,UK,MSc Data Science,Application,Google Ads
+Hauwa Okafor,hauwa.okafor1@example.com,+2348085329037,3.6,2:1,,,,136,Self-funded,11000,2028/2029,Australia,MSc Nursing,Comparing,Google Ads
+Emeka Anyanwu,emeka.anyanwu2@example.com,+2348023718431,3.8,First,7.5,,,,None,8000,2027/2028,UK,MSc Economics,Comparing,TikTok Ads
+Funke Ogundipe,funke.ogundipe3@example.com,+2348087490893,3.3,2:1,8.0,,,,Scholarship,26000,2026/2027,Australia,MSc Logistics,Researching,Google Ads
+Rita Garba,rita.garba4@example.com,+2348038119557,2.8,2:2,,,,,Family,11000,2027/2028,Australia,MSc Pharmacy,Cold,TikTok Ads
+Patience Lawal,patience.lawal5@example.com,+2348053524491,3.8,First,,101,,,Education loan,15000,2028/2029,Australia,Diploma,Cold,Referral
+Tunde Akin,tunde.akin6@example.com,+2348028740864,3.5,2:1,,,,,Partial,22000,2026/2027,Canada,MSc Management,New enquiry,Meta Campaign
+Bisi Eze,bisi.eze7@example.com,+2348024716857,3.6,2:1,,,79,,None,18000,2027/2028,UK,MSc Engineering,Cold,Organic
+Bisi Effiong,bisi.effiong8@example.com,+2348096028436,3.0,2:2,,,,117,Sponsor,35000,2026/2027,Germany,MSc IT,Cold,Organic
+Tobi Musa,tobi.musa9@example.com,+2348030513739,3.2,2:2,7.5,,,,Undecided,4000,2026/2027,USA,MSc IT,Evaluating,Meta Campaign
+Victor Johnson,victor.johnson10@example.com,+2348021496211,2.3,Third,,,85,,Sponsor,18000,2027/2028,Ireland,MSc Mechanical Eng,Evaluating,Organic
+Bisi Musa,bisi.musa11@example.com,+2348051837852,2.5,Third,6.0,,,,Scholarship,22000,2026/2027,Ireland,MSc Economics,Evaluating,Organic
+Hauwa Bello,hauwa.bello12@example.com,+2348019528530,3.8,First,,82,,,Undecided,15000,2027/2028,Canada,MSc HR,Not sure,Referral
+Victor Ekwueme,victor.ekwueme13@example.com,+2348064634663,3.6,2:1,7.5,,,,Scholarship,4000,2027/2028,Germany,MSc Nursing,Application,Google Ads
+Zainab Musa,zainab.musa14@example.com,+2348081979055,2.7,Third,7.0,,,,None,8000,2026/2027,Germany,MSc Economics,Ready to apply,Meta Campaign
+Bisi Okeke,bisi.okeke15@example.com,+2348032321899,2.2,Third,,,50,,Partial,18000,2029/2030,Australia,MSc IT,Considering,TikTok Ads
+Yusuf Olawale,yusuf.olawale16@example.com,+2348030776478,3.7,2:1,,,,88,Self-funded,42000,2027/2028,Ireland,MSc Management,Shortlisting,Meta Campaign
+Nnamdi Johnson,nnamdi.johnson17@example.com,+2348034941004,3.9,First,,,,,Family,42000,2027/2028,UK,MS Data Analytics,Application,Referral
+Segun Udo,segun.udo18@example.com,+2348044999379,3.4,2:1,,,,114,Education loan,8000,2026/2027,Australia,MS Data Analytics,Not sure,Meta Campaign
+Grace Obiora,grace.obiora19@example.com,+2348077898694,2.8,2:2,,,,95,Undecided,35000,2028/2029,USA,MS Data Analytics,Cold,Organic
+Aisha Idris,aisha.idris20@example.com,+2348099038526,4.0,First,,,,,Sponsor,18000,2026/2027,Ireland,MSc Public Health,Unresponsive,Webinar
+Emeka Akin,emeka.akin21@example.com,+2348077834855,2.6,Third,,,,87,Self-funded,22000,2029/2030,Canada,MSc Logistics,Comparing,Google Ads
+Ekene Adebayo,ekene.adebayo22@example.com,+2348084045292,2.6,Third,,99,,,Self-funded,22000,2027/2028,Ireland,MS Finance,Considering,Google Ads
+Fatima Idris,fatima.idris23@example.com,+2348058942697,4.0,First,,,,,Partial,42000,2028/2029,Canada,Foundation Business,Shortlisting,Google Ads
+Musa Okafor,musa.okafor24@example.com,+2348034073380,3.1,2:2,,82,,,Sponsor,8000,2027/2028,UK,MSc Cybersecurity,Evaluating,Google Ads
+Aminat Garba,aminat.garba25@example.com,+2348050962024,3.6,2:1,8.5,,,,Bank loan,22000,2028/2029,Ireland,Diploma,Cold,Organic
+Halima Okafor,halima.okafor26@example.com,+2348025480907,2.9,2:2,,,72,,Education loan,26000,2027/2028,Ireland,MSc Engineering,Considering,Organic
+Zainab Akin,zainab.akin27@example.com,+2348015957459,2.6,Third,,88,,,Partial,8000,2028/2029,USA,MS Data Analytics,Researching,TikTok Ads
+Ibrahim Idris,ibrahim.idris28@example.com,+2348078064830,3.1,2:2,,91,,,Partial,48000,2028/2029,Canada,MS Data Analytics,Not sure,Webinar
+Bukola Bello,bukola.bello29@example.com,+2348050785405,3.1,2:2,,,78,,Family,35000,2027/2028,Germany,MSc Marketing,Cold,Meta Campaign
+Sadiq Anyanwu,sadiq.anyanwu30@example.com,+2348022534217,3.4,2:1,,95,,,Scholarship,30000,2027/2028,Germany,MSc HR,Evaluating,TikTok Ads
+Obinna Balogun,obinna.balogun31@example.com,+2348076354180,2.7,Third,8.0,,,,Family,11000,2029/2030,Germany,MSc Management,New enquiry,Meta Campaign
+Patience Okeke,patience.okeke32@example.com,+2348026288475,2.5,Third,,,,145,Undecided,42000,2029/2030,Germany,MSc Management,Considering,Organic
+Femi Eteng,femi.eteng33@example.com,+2348073709724,2.7,Third,,,,,Undecided,48000,2026/2027,USA,MSc Biotech,Application,TikTok Ads
+Sadiq Okeke,sadiq.okeke34@example.com,+2348046468984,2.9,2:2,,110,,,Family,8000,2027/2028,Australia,MSc Nursing,Just enquired,Referral
+Musa Eze,musa.eze35@example.com,+2348037760841,2.2,Third,,,,,Partial,30000,2026/2027,USA,MSc IT,Considering,Referral
+Sani Lawal,sani.lawal36@example.com,+2348075529051,3.5,2:1,,,60,,Undecided,11000,2027/2028,Ireland,MSc Data Science,Considering,Organic
+Uche Okafor,uche.okafor37@example.com,+2348021267237,2.4,Third,,94,,,Education loan,22000,2029/2030,Australia,MSc Pharmacy,Considering,Webinar
+Samuel Ekwueme,samuel.ekwueme38@example.com,+2348012601580,4.0,First,8.0,,,,Family,15000,2029/2030,UK,MS Data Analytics,Shortlisting,Google Ads
+Ngozi Ekwueme,ngozi.ekwueme39@example.com,+2348099853245,3.9,First,,103,,,Scholarship,11000,2026/2027,UK,MSc HR,Ready to apply,Webinar
+Uche Balogun,uche.balogun40@example.com,+2348063238057,3.6,2:1,,,,139,Scholarship,42000,2029/2030,UK,MSc AI,Just enquired,Referral
+Segun Ogundipe,segun.ogundipe41@example.com,+2348019255216,3.0,2:2,,,,125,Undecided,11000,2027/2028,Canada,MSc Management,Cold,Webinar
+Funke Ekwueme,funke.ekwueme42@example.com,+2348072394301,2.3,Third,6.5,,,,Undecided,15000,2029/2030,Australia,MSc HR,Not sure,TikTok Ads
+Yakubu Anyanwu,yakubu.anyanwu43@example.com,+2348013852048,2.7,Third,,,,102,Bank loan,35000,2026/2027,Ireland,MSc Public Health,Application,Google Ads
+Yusuf Aliyu,yusuf.aliyu44@example.com,+2348075575808,3.6,2:1,6.5,,,,Partial,15000,2026/2027,Germany,MSc HR,Researching,Referral
+Patience Garba,patience.garba45@example.com,+2348067110154,3.0,2:2,,85,,,Scholarship,35000,2029/2030,Germany,MSc Marketing,Evaluating,Google Ads
+Ekene Ekwueme,ekene.ekwueme46@example.com,+2348047111151,2.9,2:2,,,,85,None,11000,2026/2027,UK,MSc Computer Science,Just enquired,Webinar
+Obinna Obi,obinna.obi47@example.com,+2348095613415,2.5,Third,,,,96,Self-funded,18000,2029/2030,Australia,MSc Engineering,Application,Referral
+Esther Adeyemi,esther.adeyemi48@example.com,+2348087446468,3.7,First,,72,,,None,26000,2027/2028,Ireland,MS Data Analytics,Evaluating,Organic
+Yakubu Adebayo,yakubu.adebayo49@example.com,+2348069421007,3.0,2:2,,,,,Scholarship,15000,2028/2029,Canada,MSc Pharmacy,Cold,Meta Campaign
+Mary Okeke,mary.okeke50@example.com,+2348033328859,3.7,First,6.0,,,,Bank loan,30000,2026/2027,Germany,Foundation Business,Comparing,TikTok Ads
+Maryam Musa,maryam.musa51@example.com,+2348067061186,3.9,First,5.5,,,,Bank loan,42000,2028/2029,Ireland,MSc IT,New enquiry,Meta Campaign
+Aminat Idris,aminat.idris52@example.com,+2348064023778,2.8,2:2,,,70,,Bank loan,4000,2026/2027,Canada,MSc HR,Not sure,Meta Campaign
+Bisi Effiong,bisi.effiong53@example.com,+2348087342561,3.9,First,,,,96,Partial,48000,2029/2030,Australia,MBA,New enquiry,Webinar
+Musa Anyanwu,musa.anyanwu54@example.com,+2348053091709,4.0,First,,,85,,Self-funded,30000,2026/2027,USA,MSc Pharmacy,Researching,Meta Campaign
+Abdul Nwachukwu,abdul.nwachukwu55@example.com,+2348079067939,3.9,First,,,,124,Undecided,48000,2027/2028,UK,MSc Public Health,Comparing,Organic
+Ngozi Adamu,ngozi.adamu56@example.com,+2348068802946,2.3,Third,,84,,,None,4000,2027/2028,Australia,MBA,Evaluating,Meta Campaign
+Aminat Sani,aminat.sani57@example.com,+2348096934122,3.6,2:1,,,80,,Family,30000,2027/2028,Canada,Diploma,Evaluating,Organic
+Nnamdi Obi,nnamdi.obi58@example.com,+2348019369750,3.0,2:2,,,,137,Self-funded,18000,2028/2029,USA,MSc HR,Not sure,TikTok Ads
+Esther Bakare,esther.bakare59@example.com,+2348069934576,2.5,Third,,,,140,Family,15000,2027/2028,Australia,Foundation Business,Considering,Meta Campaign
+Peter Ekwueme,peter.ekwueme60@example.com,+2348061167978,2.3,Third,6.0,,,,Education loan,8000,2029/2030,Australia,MSc Engineering,Just enquired,Referral
+Aisha Bakare,aisha.bakare61@example.com,+2348065026398,3.6,2:1,,,55,,Education loan,48000,2029/2030,Ireland,Diploma,Researching,TikTok Ads
+Comfort Olawale,comfort.olawale62@example.com,+2348082613940,3.9,First,,112,,,Scholarship,26000,2026/2027,Germany,MSc Engineering,New enquiry,Google Ads
+Obinna Idris,obinna.idris63@example.com,+2348013885234,3.8,First,,98,,,Partial,42000,2028/2029,Canada,MSc Marketing,Shortlisting,Meta Campaign
+Funke Balogun,funke.balogun64@example.com,+2348093176117,3.5,2:1,,,66,,Self-funded,30000,2026/2027,Germany,MSc Economics,Shortlisting,Meta Campaign
+Femi Garba,femi.garba65@example.com,+2348088862539,2.9,2:2,,89,,,Undecided,8000,2026/2027,Australia,MSc HR,Researching,Organic
+Sadiq Adamu,sadiq.adamu66@example.com,+2348012944682,2.6,Third,8.0,,,,Undecided,18000,2029/2030,Canada,MS Data Analytics,Researching,Google Ads
+Idris Musa,idris.musa67@example.com,+2348093334601,3.1,2:2,8.0,,,,Self-funded,18000,2029/2030,Australia,MSc Computer Science,Not sure,Webinar
+Yusuf Obi,yusuf.obi68@example.com,+2348022097496,2.9,2:2,,,,118,None,18000,2029/2030,Canada,MSc Pharmacy,New enquiry,Webinar
+Ekene Anyanwu,ekene.anyanwu69@example.com,+2348025457816,2.7,Third,,,85,,Education loan,8000,2029/2030,Australia,MSc Data Science,Comparing,Organic
+Ibrahim Mohammed,ibrahim.mohammed70@example.com,+2348059470729,3.3,2:2,,95,,,Self-funded,42000,2027/2028,USA,MS Data Analytics,Evaluating,TikTok Ads
+Grace Mohammed,grace.mohammed71@example.com,+2348050559278,2.8,Third,6.0,,,,None,11000,2027/2028,Australia,MSc AI,Cold,TikTok Ads
+Obinna Aliyu,obinna.aliyu72@example.com,+2348088831486,3.6,2:1,,,,87,Education loan,15000,2027/2028,Australia,Foundation Business,Researching,Meta Campaign
+Hadiza Ogundipe,hadiza.ogundipe73@example.com,+2348083076970,3.3,2:2,,,55,,Family,48000,2028/2029,Ireland,MSc Data Science,Ready to apply,Webinar
+Victor Obi,victor.obi74@example.com,+2348085776373,3.6,2:1,,86,,,Sponsor,42000,2026/2027,USA,MS Finance,Shortlisting,Organic
+Amara Amadi,amara.amadi75@example.com,+2348024754064,3.7,First,6.0,,,,Self-funded,11000,2028/2029,Australia,MSc Management,Application,TikTok Ads
+Grace Ekwueme,grace.ekwueme76@example.com,+2348070166480,3.1,2:2,7.5,,,,None,18000,2027/2028,Germany,MSc Data Science,Ready to apply,Referral
+Bukola Okonkwo,bukola.okonkwo77@example.com,+2348024490391,2.4,Third,,69,,,Sponsor,18000,2027/2028,Germany,MSc HR,Just enquired,TikTok Ads
+Peter Balogun,peter.balogun78@example.com,+2348090180577,2.8,2:2,,,,,Family,26000,2027/2028,Canada,MSc Mechanical Eng,Researching,Referral
+Bukola Aliyu,bukola.aliyu79@example.com,+2348022762205,3.0,2:2,,,54,,Scholarship,8000,2026/2027,Australia,MSc Engineering,Unresponsive,TikTok Ads
+Rita Obi,rita.obi80@example.com,+2348084674816,3.9,First,,,,140,Partial,4000,2026/2027,Ireland,MSc IT,Researching,Meta Campaign
+Uche Obiora,uche.obiora81@example.com,+2348030767532,2.4,Third,,,,121,Family,26000,2029/2030,Ireland,MS Data Analytics,Not sure,TikTok Ads
+Ada Okafor,ada.okafor82@example.com,+2348091737913,3.2,2:2,,,,85,Sponsor,11000,2027/2028,Germany,Diploma,Application,Google Ads
+Ekene Okafor,ekene.okafor83@example.com,+2348022315507,3.5,2:1,,,,134,Scholarship,4000,2026/2027,Canada,MS Data Analytics,Ready to apply,TikTok Ads
+Samuel Effiong,samuel.effiong84@example.com,+2348069473616,2.7,Third,6.5,,,,Scholarship,18000,2028/2029,Germany,MSc HR,New enquiry,Organic
+Segun Idris,segun.idris85@example.com,+2348016095815,3.5,2:1,,114,,,Sponsor,18000,2026/2027,USA,MSc Engineering,Ready to apply,Referral
+Ekene Okonkwo,ekene.okonkwo86@example.com,+2348033581357,3.6,2:1,,,,89,Partial,4000,2027/2028,UK,MSc Biotech,Application,Webinar
+Uche Okonkwo,uche.okonkwo87@example.com,+2348086960402,2.2,Third,,,,95,Undecided,22000,2026/2027,Australia,MSc Engineering,Evaluating,Referral
+Maryam Nwachukwu,maryam.nwachukwu88@example.com,+2348080325062,3.8,First,,69,,,None,48000,2026/2027,Ireland,MSc Management,Evaluating,Webinar
+Stephen Bakare,stephen.bakare89@example.com,+2348041711468,3.7,First,6.0,,,,Undecided,30000,2029/2030,Ireland,MSc HR,New enquiry,TikTok Ads
+Uche Udo,uche.udo90@example.com,+2348094183695,3.0,2:2,,,,122,Self-funded,22000,2027/2028,UK,MSc IT,New enquiry,Referral
+Fatima Eze,fatima.eze91@example.com,+2348059491122,3.2,2:2,,,,,Partial,30000,2027/2028,Ireland,MSc Computer Science,New enquiry,Organic
+Ada Musa,ada.musa92@example.com,+2348053154591,2.7,Third,,,,130,Scholarship,35000,2028/2029,Canada,MSc Computer Science,Evaluating,TikTok Ads
+Femi Adebayo,femi.adebayo93@example.com,+2348080339290,3.7,2:1,,,,,Self-funded,48000,2028/2029,USA,MBA,Researching,Meta Campaign
+Patience Balogun,patience.balogun94@example.com,+2348048137561,3.3,2:2,,,,90,Sponsor,22000,2026/2027,Germany,Diploma,Shortlisting,Organic
+Comfort Johnson,comfort.johnson95@example.com,+2348051551377,2.6,Third,,,,,Scholarship,48000,2028/2029,Australia,MSc Management,Researching,Meta Campaign
+Rita Idris,rita.idris96@example.com,+2348034194479,3.6,2:1,,69,,,Bank loan,8000,2027/2028,Ireland,MSc Management,Ready to apply,TikTok Ads
+Halima Obi,halima.obi97@example.com,+2348090161060,2.6,Third,,111,,,Undecided,4000,2027/2028,USA,Foundation Business,New enquiry,Organic
+Sadiq Adebayo,sadiq.adebayo98@example.com,+2348041407343,3.6,2:1,,,,128,Undecided,30000,2029/2030,USA,Diploma,Just enquired,Organic
+Musa Eteng,musa.eteng99@example.com,+2348036802975,3.3,2:1,7.5,,,,None,8000,2026/2027,UK,MSc Marketing,Comparing,Referral

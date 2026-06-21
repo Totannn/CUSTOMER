@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TGM Campaign Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">TGM</div>
+    <div>
+      <div class="brand-name">TGM Campaign Manager</div>
+      <div class="brand-sub">Lead ranking &amp; distribution</div>
+    </div>
+  </div>
+
+  <div class="side-section">
+    <div class="side-label">Data</div>
+    <a class="side-btn" href="{{ url_for('sync_hubspot') }}">⟳ Sync from HubSpot</a>
+    <a class="side-btn ghost" href="{{ url_for('load_sample') }}">Load sample data</a>
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload">
+      <label class="side-btn ghost" for="file">Import HubSpot CSV</label>
+      <input id="file" name="file" type="file" accept=".csv" onchange="this.form.submit()" hidden>
+    </form>
+    <a class="side-btn ghost" href="{{ url_for('export') }}">Export ranked list</a>
+  </div>
+
+  <div class="side-section">
+    <div class="side-label">Filter by tier</div>
+    <div id="tier-filters" class="tier-filters"></div>
+  </div>
+
+  <div class="side-section">
+    <div class="side-label">Segment</div>
+    <select id="country-filter" class="select"><option value="">All countries</option></select>
+    <select id="funding-filter" class="select"><option value="">All funding</option></select>
+    <select id="intake-filter" class="select"><option value="">All intakes</option></select>
+  </div>
+
+  <div class="source-note" id="source-note">—</div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1>TGM Campaign Manager</h1>
+      <p class="muted">Rank, segment and route every enquiry to the right customer-service track.</p>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search name, email, course…">
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="enquiries">Ranked enquiries</button>
+    <button class="tab" data-view="distribution">Lead distribution</button>
+  </div>
+
+  <div id="view-enquiries">
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid-2">
+    <div class="card">
+      <div class="card-head"><h2>Tier distribution</h2><span class="muted" id="dist-sub"></span></div>
+      <canvas id="distChart" height="150"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-head"><h2>How the score works</h2></div>
+      <div class="pillar-legend" id="pillar-legend"></div>
+      <p class="fineprint">Strength = likelihood to <b>enrol &amp; succeed</b>. Tune weights &amp; thresholds in <code>scoring.py</code>.</p>
+    </div>
+  </section>
+
+  <section class="card table-card">
+    <div class="card-head">
+      <h2>Ranked enquiries</h2>
+      <span class="muted" id="result-count"></span>
+    </div>
+    <div class="table-wrap">
+      <table id="students">
+        <thead>
+          <tr>
+            <th>#</th><th>Student</th><th>Tier</th><th>Score</th>
+            <th>Academic</th><th>Financial</th><th>Intent</th>
+            <th>Country</th><th>Intake</th><th>Funding</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div id="empty" class="empty">No data loaded. Click <b>Load sample data</b> to see it in action.</div>
+    </div>
+  </section>
+  </div><!-- /view-enquiries -->
+
+  <div id="view-distribution" hidden>
+    <section class="card">
+      <div class="card-head">
+        <h2>Distribute leads to customer service</h2>
+        <div class="dist-controls">
+          <label class="muted">Agents</label>
+          <input id="rep-count" class="num" type="number" min="1" max="12" value="4">
+          <button id="redistribute" class="btn-sm">Distribute</button>
+          <button id="export-assign" class="btn-sm ghost">Export assignments</button>
+        </div>
+      </div>
+      <p class="muted">Splits the <b id="dist-pool">0</b> currently shown enquiries equally across agents by
+        <b>both quantity and quality</b> — each agent gets a near-identical headcount, average strength score
+        and tier mix. Apply sidebar filters first to distribute a specific segment.</p>
+      <div id="dist-balance" class="dist-balance"></div>
+    </section>
+    <section id="dist-reps" class="dist-grid"></section>
+  </div><!-- /view-distribution -->
+</main>
+
+<!-- Slide-over detail + CS playbook -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer"></aside>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
