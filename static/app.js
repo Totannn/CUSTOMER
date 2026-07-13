@@ -37,7 +37,7 @@ function buildTierFilters() {
 
 function buildPillarLegend() {
   const box = $("pillar-legend");
-  const colors = { academic: "#22d3ee", financial: "#6366f1", intent: "#f59e0b" };
+  const colors = { academic: "#38bdf8", financial: "#3b82f6", intent: "#e8712e" };
   box.innerHTML = "";
   Object.entries(META.weights || {}).forEach(([name, w]) => {
     const row = document.createElement("div");
@@ -82,6 +82,30 @@ function wireEvents() {
   $("redistribute").onclick = distribute;
   $("rep-count").onchange = distribute;
   $("export-assign").onclick = exportAssignments;
+
+  // Admin roster controls (drive the persistent agent assignment + audit system)
+  $("redistribute-all").onclick = redistributeAll;
+  $("edit-roster").onclick = editRoster;
+}
+
+async function redistributeAll() {
+  if (!META.total) { alert("Load some leads first (Load sample data / Import CSV)."); return; }
+  if (!confirm("Re-deal every lead equally across the customer-service team?\nAudit history is kept.")) return;
+  await fetch("/api/redistribute", { method: "POST" });
+  alert("Leads redistributed. Open the Customer-service team page to review.");
+}
+
+async function editRoster() {
+  const meta = await (await fetch("/api/agents")).json();
+  const input = prompt("Customer-service agents (comma-separated):", (meta.roster || []).join(", "));
+  if (input === null) return;
+  const agents = input.split(",").map((a) => a.trim()).filter(Boolean);
+  await fetch("/api/roster", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ agents }),
+  });
+  alert("Roster updated.");
 }
 
 function applyFilters() {
@@ -169,7 +193,7 @@ function openDrawer(rank) {
   const s = STUDENTS.find((x) => x.rank === rank);
   if (!s) return;
   const pb = META.playbook[s.tier] || {};
-  const pcolors = { academic: "#22d3ee", financial: "#6366f1", intent: "#f59e0b" };
+  const pcolors = { academic: "#38bdf8", financial: "#3b82f6", intent: "#e8712e" };
   const pillarsHtml = Object.entries(s.pillars).map(([k, p]) => `
     <div class="d-pillar">
       <div class="top"><span>${cap(k)} <span class="muted">(${Math.round(p.weight * 100)}%)</span></span><b>${p.score}</b></div>
@@ -214,7 +238,7 @@ function closeDrawer() {
 
 // ---------- Lead distribution (balanced by count AND quality) ----------
 let lastAssignment = [];
-const REP_PALETTE = ["#6366f1", "#22d3ee", "#10b981", "#f59e0b", "#ec4899",
+const REP_PALETTE = ["#3b82f6", "#e8712e", "#10b981", "#f59e0b", "#ec4899",
   "#8b5cf6", "#14b8a6", "#f97316", "#3b82f6", "#84cc16", "#e11d48", "#06b6d4"];
 
 function distribute() {

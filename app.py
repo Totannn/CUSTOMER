@@ -12,6 +12,7 @@ from flask import (Flask, jsonify, render_template, request,
                    redirect, url_for, Response, flash)
 
 import scoring
+import store
 
 app = Flask(__name__)
 app.secret_key = "change-me-in-production"
@@ -30,21 +31,26 @@ COLUMN_ALIASES = {
     "last_name": ["last name", "lastname"],
     "email": ["email", "email address"],
     "phone": ["phone", "phone number", "mobile", "mobile phone number"],
-    "gpa": ["gpa", "cgpa", "grade point average"],
+    "gpa": ["gpa", "cgpa", "grade point average", "most recent gpa"],
     "percentage": ["percentage", "marks", "aggregate"],
-    "grade_class": ["grade class", "degree class", "classification"],
+    "grade_class": ["grade class", "degree class", "classification",
+                    "degree classification"],
     "ielts": ["ielts", "ielts score"],
     "toefl": ["toefl", "toefl score"],
     "pte": ["pte", "pte score"],
     "duolingo": ["duolingo", "duolingo score"],
-    "funding_type": ["funding type", "funding", "funding source", "how will you fund"],
-    "budget": ["budget", "budget (gbp)", "available funds", "budget amount"],
+    "funding_type": ["funding type", "funding", "funding source", "how will you fund",
+                     "how will you fund your studies"],
+    "budget": ["budget", "budget (gbp)", "available funds", "budget amount",
+               "approximate budget available (gbp)", "approximate budget available"],
     "intake_year": ["intake year", "intake", "intake/session", "session",
-                    "intake session", "preferred intake"],
+                    "intake session", "preferred intake", "intended intake"],
     "intake_months": ["intake months", "months to intake", "months_to_intake"],
     "target_country": ["target country", "country", "preferred country", "destination"],
-    "target_course": ["target course", "course", "program", "programme", "subject"],
-    "stage": ["stage", "lead status", "lifecycle stage", "deal stage", "status"],
+    "target_course": ["target course", "course", "program", "programme", "subject",
+                      "preferred course / programme", "preferred course"],
+    "stage": ["stage", "lead status", "lifecycle stage", "deal stage", "status",
+              "how ready are you"],
     "source": ["source", "lead source", "original source", "campaign"],
 }
 
@@ -76,11 +82,12 @@ def normalise_row(raw):
     for key, value in raw.items():
         if key is None:
             continue
-        canonical = ALIAS_LOOKUP.get(key.strip().lower())
+        k = key.strip().lower().rstrip("?:*").strip()   # tolerate "GPA?", "Email:" etc.
+        canonical = ALIAS_LOOKUP.get(k)
         if canonical:
             out[canonical] = value
         else:
-            out[key.strip().lower()] = value      # keep unknowns too, harmless
+            out[k] = value                        # keep unknowns too, harmless
     # Derive months-to-intake from the academic-year session for the scorer.
     if out.get("intake_year") and not out.get("intake_months"):
         m = year_to_months(out["intake_year"])
@@ -93,6 +100,18 @@ def load_csv_text(text):
     reader = csv.DictReader(io.StringIO(text))
     rows = [normalise_row(r) for r in reader]
     return scoring.score_all(rows)
+
+
+TIER_ORDER = [t[0] for t in scoring.TIERS]
+
+
+def set_students(scored):
+    """Become the live roster: assign every lead to an agent (balanced per
+    tier) and attach its status / audit summary, then publish to STUDENTS."""
+    global STUDENTS
+    store.apply_assignments(scored, TIER_ORDER)
+    STUDENTS = scored
+    return STUDENTS
 
 
 # --- Customer-service playbook per tier (the "effective for CS" part) ---------
@@ -196,6 +215,118 @@ def api_meta():
     })
 
 
+# --- Customer-service agents + audit trail ---------------------------------
+
+@app.route("/agents")
+def agents_page():
+    return render_template("workforce.html")
+
+
+def _agent_summary():
+    """Per-agent workload + productivity, for the team overview."""
+    roster = store.get_agents()
+    activity = store.get_activity()
+
+    def blank(name):
+        return {"name": name, "leads": 0, "score_sum": 0, "tiers": {},
+                "priority": 0, "contacted": 0, "converted": 0,
+                "actions": 0, "last_active": None}
+
+    summ = {a: blank(a) for a in roster}
+    for s in STUDENTS:
+        d = summ.setdefault(s.get("agent", "Unassigned"),
+                            blank(s.get("agent", "Unassigned")))
+        d["leads"] += 1
+        d["score_sum"] += s["score"]
+        d["tiers"][s["tier"]] = d["tiers"].get(s["tier"], 0) + 1
+        if s["tier"] in ("Strong", "Very Good"):
+            d["priority"] += 1
+        if s.get("status") not in (None, "New"):
+            d["contacted"] += 1
+        if s.get("status") == "Converted":
+            d["converted"] += 1
+
+    for ev in activity:
+        d = summ.get(ev.get("agent"))
+        if d:
+            d["actions"] += 1
+            d["last_active"] = ev["ts"]   # chronological; last wins
+
+    out = []
+    for name in roster:
+        d = summ[name]
+        d["avg"] = round(d["score_sum"] / d["leads"], 1) if d["leads"] else 0
+        out.append(d)
+    extra = summ.get("Unassigned")
+    if extra and extra["leads"]:
+        extra["avg"] = round(extra["score_sum"] / extra["leads"], 1)
+        out.append(extra)
+    return out
+
+
+@app.route("/api/agents")
+def api_agents():
+    return jsonify({
+        "agents": _agent_summary(),
+        "roster": store.get_agents(),
+        "students": STUDENTS,
+        "tier_order": TIER_ORDER,
+        "tier_meta": [{"name": t[0], "color": t[2]} for t in scoring.TIERS],
+        "playbook": PLAYBOOK,
+        "statuses": store.STATUSES,
+        "actions": store.ACTIONS,
+        "source_note": SOURCE_NOTE,
+    })
+
+
+@app.route("/api/activity", methods=["GET", "POST"])
+def api_activity():
+    if request.method == "POST":
+        data = request.get_json(force=True, silent=True) or {}
+        email = (data.get("email") or "").strip()
+        agent = (data.get("agent") or "").strip()
+        action = (data.get("action") or "Note").strip()
+        status = (data.get("status") or "").strip() or None
+        note = data.get("note") or ""
+
+        student_name = ""
+        target = None
+        for s in STUDENTS:
+            if s.get("email") == email:
+                target = s
+                student_name = s["name"]
+                agent = agent or s.get("agent", "")
+                break
+        if not email or not agent:
+            return jsonify({"error": "email and agent are required"}), 400
+
+        ev = store.log_activity(agent, email, student_name, action, status, note)
+        if target is not None:                     # reflect immediately in memory
+            if status:
+                target["status"] = status
+            target["activity_count"] = target.get("activity_count", 0) + 1
+            target["last_activity"] = ev["ts"]
+            target["last_action"] = action
+        return jsonify(ev)
+
+    return jsonify(list(reversed(store.get_activity(
+        agent=request.args.get("agent"), email=request.args.get("email")))))
+
+
+@app.route("/api/redistribute", methods=["POST"])
+def api_redistribute():
+    store.redistribute(STUDENTS, TIER_ORDER)
+    return jsonify({"ok": True, "agents": _agent_summary()})
+
+
+@app.route("/api/roster", methods=["POST"])
+def api_roster():
+    data = request.get_json(force=True, silent=True) or {}
+    store.set_agents(data.get("agents") or [])
+    store.apply_assignments(STUDENTS, TIER_ORDER)   # drop/reassign as needed
+    return jsonify({"roster": store.get_agents()})
+
+
 @app.route("/upload", methods=["POST"])
 def upload():
     global STUDENTS, SOURCE_NOTE
@@ -205,7 +336,7 @@ def upload():
         return redirect(url_for("dashboard"))
     try:
         text = file.read().decode("utf-8-sig")
-        STUDENTS = load_csv_text(text)
+        set_students(load_csv_text(text))
         SOURCE_NOTE = f"Loaded {len(STUDENTS)} contacts from {file.filename}"
     except Exception as exc:                       # noqa: BLE001
         flash(f"Could not read CSV: {exc}")
@@ -223,12 +354,28 @@ def sync_hubspot():
     return redirect(url_for("dashboard"))
 
 
+@app.route("/sync-jotform")
+def sync_jotform():
+    global SOURCE_NOTE
+    try:
+        import jotform_sync
+        raw = jotform_sync.fetch_contacts()
+        rows = [normalise_row(r) for r in raw]
+        set_students(scoring.score_all(rows))
+        SOURCE_NOTE = f"Jotform sync: {len(STUDENTS)} submissions"
+        if not STUDENTS:
+            flash("Jotform returned 0 submissions. Check the form id / API key.")
+    except Exception as exc:                       # noqa: BLE001
+        flash(f"Jotform sync failed: {exc}")
+    return redirect(url_for("dashboard"))
+
+
 @app.route("/load-sample")
 def load_sample():
     global STUDENTS, SOURCE_NOTE
     path = os.path.join(HERE, "sample_data.csv")
     with open(path, encoding="utf-8-sig") as f:
-        STUDENTS = load_csv_text(f.read())
+        set_students(load_csv_text(f.read()))
     SOURCE_NOTE = f"Sample data ({len(STUDENTS)} contacts)"
     return redirect(url_for("dashboard"))
 
@@ -261,7 +408,7 @@ def _run_hubspot_sync():
     import hubspot_sync
     raw = hubspot_sync.fetch_contacts()
     rows = [normalise_row(r) for r in raw]
-    STUDENTS = scoring.score_all(rows)
+    set_students(scoring.score_all(rows))
     SOURCE_NOTE = f"HubSpot sync: {len(STUDENTS)} contacts"
 
 

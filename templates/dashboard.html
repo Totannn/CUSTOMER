@@ -21,14 +21,27 @@
   </div>
 
   <div class="side-section">
+    <div class="side-label">Views</div>
+    <a class="side-btn ghost active" href="{{ url_for('dashboard') }}">Ranked enquiries</a>
+    <a class="side-btn ghost" href="{{ url_for('agents_page') }}">Customer-service team</a>
+  </div>
+
+  <div class="side-section">
     <div class="side-label">Data</div>
     <a class="side-btn" href="{{ url_for('sync_hubspot') }}">⟳ Sync from HubSpot</a>
+    <a class="side-btn" href="{{ url_for('sync_jotform') }}">⟳ Sync from Jotform</a>
     <a class="side-btn ghost" href="{{ url_for('load_sample') }}">Load sample data</a>
     <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload">
       <label class="side-btn ghost" for="file">Import HubSpot CSV</label>
       <input id="file" name="file" type="file" accept=".csv" onchange="this.form.submit()" hidden>
     </form>
     <a class="side-btn ghost" href="{{ url_for('export') }}">Export ranked list</a>
+  </div>
+
+  <div class="side-section">
+    <div class="side-label">Customer-service roster</div>
+    <button id="redistribute-all" class="side-btn ghost">Redistribute all leads</button>
+    <button id="edit-roster" class="side-btn ghost">Edit agents</button>
   </div>
 
   <div class="side-section">

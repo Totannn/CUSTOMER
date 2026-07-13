@@ -2,5 +2,9 @@
 __pycache__/
 *.pyc
 hubspot_token.txt
+jotform_key.txt
+jotform_form.txt
+data/
 out.log
 err.log
+run.log

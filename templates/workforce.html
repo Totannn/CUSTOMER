@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TGM · Customer-service team</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">TGM</div>
+    <div>
+      <div class="brand-name">TGM Campaign Manager</div>
+      <div class="brand-sub">Customer-service team</div>
+    </div>
+  </div>
+
+  <div class="side-section">
+    <div class="side-label">Workspace</div>
+    <div class="muted" style="line-height:1.6">Your assigned leads, statuses and activity.
+      Leads are allocated by the admin team.</div>
+  </div>
+
+  <div class="source-note" id="source-note">—</div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1>Customer-service team</h1>
+      <p class="muted">Leads are split equally across every strength tier. Track what each agent does, end to end.</p>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search lead, email, agent…">
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="overview">Team overview</button>
+    <button class="tab" data-view="agent">Agent workspace</button>
+    <button class="tab" data-view="audit">Audit log</button>
+  </div>
+
+  <!-- Team overview -->
+  <div id="view-overview">
+    <section class="kpis" id="team-kpis"></section>
+    <section id="agent-grid" class="dist-grid"></section>
+    <div id="overview-empty" class="empty">No data loaded. Click <b>Load sample data</b> to populate the team.</div>
+  </div>
+
+  <!-- Single agent workspace -->
+  <div id="view-agent" hidden>
+    <section class="card">
+      <div class="card-head">
+        <h2>Agent workspace</h2>
+        <select id="agent-picker" class="select" style="width:auto;min-width:200px"></select>
+      </div>
+      <div id="agent-head" class="agent-head"></div>
+    </section>
+    <section class="card table-card">
+      <div class="card-head">
+        <h2>Assigned leads</h2>
+        <span class="muted" id="agent-count"></span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Lead</th><th>Tier</th><th>Score</th><th>Status</th>
+                <th>Last action</th><th>Touches</th><th></th></tr>
+          </thead>
+          <tbody id="agent-tbody"></tbody>
+        </table>
+        <div id="agent-empty" class="empty">No leads assigned to this agent.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Audit log -->
+  <div id="view-audit" hidden>
+    <section class="card">
+      <div class="card-head">
+        <h2>Audit log</h2>
+        <div class="dist-controls">
+          <select id="audit-agent" class="select" style="width:auto;min-width:170px"></select>
+          <span class="muted" id="audit-count"></span>
+        </div>
+      </div>
+      <p class="muted">Every logged action, newest first — a complete record of who did what, and when.</p>
+      <div class="table-wrap" style="margin-top:12px">
+        <table>
+          <thead>
+            <tr><th>When</th><th>Agent</th><th>Lead</th><th>Action</th><th>Status</th><th>Note</th></tr>
+          </thead>
+          <tbody id="audit-tbody"></tbody>
+        </table>
+        <div id="audit-empty" class="empty">No activity logged yet.</div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Slide-over: log an action against a lead -->
+<div class="drawer-overlay" id="overlay"></div>
+<aside class="drawer" id="drawer"></aside>
+
+<script src="{{ url_for('static', filename='workforce.js') }}"></script>
+</body>
+</html>
